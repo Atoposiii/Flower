@@ -1,0 +1,62 @@
+package com.flower.entity;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+@Table(name = "post_like", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"post_id", "user_id"})
+})
+public class PostLike {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @Column(name = "create_time")
+    private Date createTime;
+
+    @PrePersist
+    protected void onCreate() {
+        createTime = new Date();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+}

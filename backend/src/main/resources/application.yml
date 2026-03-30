@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/flower_db?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&connectionCollation=utf8mb4_unicode_ci
+    username: root
+    password: Dls666666
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        "format_sql": true
+        "dialect": org.hibernate.dialect.MySQL8Dialect
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+jwt:
+  secret: flower-website-jwt-secret-key-2024
+  expiration: 86400000
+
+feature:
+  chat:
+    enabled: true
+  feedback:
+    enabled: true
+  payment:
+    enabled: true
+
+payment:
+  yearly-fee: 9.90
+  refund-window-seconds: 120
